@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda</title>
+    <link href="style.css" rel="stylesheet">
+    <script src="fullcalendar/dist/index.global.min.js"></script>
+    <script src="fullcalendar/packages/core/locales/pt-br.global.min.js"></script>
+    <script src="fullcalendar/packages/bootstrap5/index.global.min.js"></script>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var calendarEl = document.getElementById('calendar');
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+    
+            themeSystem: 'bootstrap5',
+            headerToolbar: {
+              left: 'prev,next today',
+              center: 'title',
+              right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            locale: 'pt-br',
+            //initialDate: '2024-07-10',
+            events: 'listar_eventos.php',
+            navLinks: true,
+            selectable: true,
+            selectMirror: true,
+            dayMaxEvents: true,
+            editable: true,
+          });
+          calendar.render();
+        });
+      </script>
+</head>
+
+<body>
+    <div id='calendar'></div>
+    <p class="text-center">FULLCALENDAR JS</p>
+</body>
+
+</html>
