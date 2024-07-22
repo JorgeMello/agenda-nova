@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda</title>
+    <link href="style.css" rel="stylesheet">
+    <script src="fullcalendar/dist/index.global.min.js"></script>
+    <script src="fullcalendar/packages/core/locales/pt-br.global.min.js"></script>
+    <script src="fullcalendar/packages/bootstrap5/index.global.min.js"></script>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
+    <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var calendarEl = document.getElementById('calendar');
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+    
+            themeSystem: 'bootstrap5',
+            headerToolbar: {
+              left: 'prev,next today',
+              center: 'title',
+              right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            locale: 'pt-br',
+            //initialDate: '2024-07-10',
+            events: 'listar_eventos.php',
+            navLinks: true,
+            selectable: true,
+            selectMirror: true,
+            dayMaxEvents: true,
+            editable: true,
+
+            eventClick: function(info) {
+              console.log(info);
+              //$("#ModalVisualizar").modal('show');
+              const ModalVisualizarTela = new bootstrap.Modal(document.getElementById('ModalVisualizar')).show();
+              document.getElementById('visualizar_id').innerText = info.event.id;
+              document.getElementById('visualizar_titulo').innerHTML = info.event.title;
+              document.getElementById('visualizar_inicial').innerHTML = info.event.start.toLocaleString();
+              document.getElementById('visualizar_final').innerHTML = info.event.end.toLocaleString();
+            }
+
+          });
+          calendar.render();
+        });
+      </script>
+</head>
+
+<body>
+    <div id='calendar'></div>
+    <p class="text-center">FULLCALENDAR JS</p>
+
+<!-- Modal Visualizar detalhes do Evento -->
+<div class="modal fade" id="ModalVisualizar" tabindex="-1" role="dialog" aria-labelledby="ModalVisualizarLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalVisualizarLabel">Detalhes do Evento</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <dl class="row">
+                <dt class="col-sm-3">ID:</dt>
+                <dd class="col-sm-9" id="visualizar_id"></dd>
+                <dt class="col-sm-3">Título:</dt>
+                <dd class="col-sm-9" id="visualizar_titulo"></dd>
+                <dt class="col-sm-3">Início:</dt>
+                <dd class="col-sm-9" id="visualizar_inicial"></dd>
+                <dt class="col-sm-3">Fim:</dt>
+                <dd class="col-sm-9" id="visualizar_final"></dd>
+            </dl>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-primary">Salvar Evento</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
