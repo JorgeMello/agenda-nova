@@ -3,6 +3,7 @@
 <head>
 <meta charset='utf-8' />
 <script src='../dist/index.global.js'></script>
+<script src="../packages/core/locales/pt-br.global.min.js"></script>
 <script>
 
   /*
@@ -11,7 +12,7 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     var calendarOptions = {
-      initialDate: '2023-01-12',
+      initialDate: '2024-07-12',
       initialView: 'timeGridWeek',
       nowIndicator: true,
       headerToolbar: {
@@ -24,62 +25,70 @@
       selectable: true,
       selectMirror: true,
       dayMaxEvents: true, // allow "more" link when too many events
+      locale: 'pt-br',
       events: [
         {
           title: 'All Day Event',
-          start: '2023-01-01',
+          start: '2024-07-01',
         },
         {
           title: 'Long Event',
-          start: '2023-01-07',
-          end: '2023-01-10'
+          start: '2024-07-07',
+          end: '2024-07-10'
         },
         {
           groupId: 999,
           title: 'Repeating Event',
-          start: '2023-01-09T16:00:00'
+          start: '2024-07-09T16:00:00'
         },
         {
           groupId: 999,
           title: 'Repeating Event',
-          start: '2023-01-16T16:00:00'
+          start: '2024-07-16T16:00:00'
         },
         {
           title: 'Conference',
-          start: '2023-01-11',
-          end: '2023-01-13'
+          start: '2024-07-11',
+          end: '2024-07-13'
         },
         {
           title: 'Meeting',
-          start: '2023-01-12T10:30:00',
-          end: '2023-01-12T12:30:00'
+          start: '2024-07-12T10:30:00',
+          end: '2024-07-12T12:30:00'
         },
         {
           title: 'Lunch',
-          start: '2023-01-12T12:00:00'
+          start: '2024-07-12T12:00:00'
         },
         {
           title: 'Meeting',
-          start: '2023-01-12T14:30:00'
+          start: '2024-07-12T14:30:00'
         },
         {
           title: 'Happy Hour',
-          start: '2023-01-12T17:30:00'
+          start: '2024-07-12T17:30:00'
         },
         {
           title: 'Dinner',
-          start: '2023-01-12T20:00:00'
+          start: '2024-07-12T20:00:00'
         },
         {
           title: 'Birthday Party',
-          start: '2023-01-13T07:00:00'
+          start: '2024-07-13T07:00:00'
         },
         {
           title: 'Click for Google',
           url: 'http://google.com/',
-          start: '2023-01-28'
+          start: '2024-07-28'
         }
-      ]
+      ],
+      eventClick: function (info) {
+          info.jsEvent.preventDefault(); // don't let the browser navigate
+
+          if (info.event.url) {
+            window.open(info.event.url);
+          }
+        }
     };
 
     var calendar = new FullCalendar.Calendar(document.getElementById('calendar'), calendarOptions);
@@ -163,7 +172,7 @@
 </head>
 <body>
 
-  <button class='modal-trigger'>Show modal</button>
+  <button type="button" class='modal-trigger btn btn-primary'>Mostrar calendário</button>
 
   <div id='calendar'></div>
 

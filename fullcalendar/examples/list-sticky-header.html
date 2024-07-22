@@ -3,6 +3,7 @@
 <head>
 <meta charset='utf-8' />
 <script src='../dist/index.global.js'></script>
+<script src="../packages/core/locales/pt-br.global.min.js"></script>
 <script>
 
   document.addEventListener('DOMContentLoaded', function() {
@@ -15,33 +16,35 @@
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
-        right: 'listMonth,listYear'
+        right: 'listMonth,listYear,listDay'
       },
 
       // customize the button names,
       // otherwise they'd all just say "list"
       views: {
-        listMonth: { buttonText: 'list month' },
-        listYear: { buttonText: 'list year' }
+        listMonth: { buttonText: 'Listar Mês' },
+        listYear: { buttonText: 'Listar Ano' },
+        listDay: { buttonText: 'Listar Dia' }
       },
 
       initialView: 'listYear',
-      initialDate: '2023-01-12',
+      initialDate: '2024-07-12',
       navLinks: true, // can click day/week names to navigate views
       editable: true,
+      locale: 'pt-br',
       events: [
         {
-          title: 'repeating event 1',
+          title: 'Repetindo Evento 1',
           daysOfWeek: [ 1, 2, 3 ],
           duration: '00:30'
         },
         {
-          title: 'repeating event 2',
+          title: 'Repetindo Evento 2',
           daysOfWeek: [ 1, 2, 3 ],
           duration: '00:30'
         },
         {
-          title: 'repeating event 3',
+          title: 'Repetindo Evento 3',
           daysOfWeek: [ 1, 2, 3 ],
           duration: '00:30'
         }
